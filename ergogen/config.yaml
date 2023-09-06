@@ -1,0 +1,441 @@
+units:
+  kx: cx + 1
+  ky: cy + 1
+
+  px: kx + 4
+  py: ky + 4
+
+  radius: 100
+  angle: 11.5
+  thumb_x: 18.1173331572
+  thumb_y: 2.38519215977
+
+  screwSize: 1.55
+  standoffSize: 2.5
+
+points:
+  zones:
+    matrix:
+      anchor:
+        shift: [100, -100]
+      key:
+        padding: 1ky
+        spread: 1kx
+      columns:
+        outer:
+          key:
+            column_net: P21
+            splay: 0
+          rows:
+            bottom:
+              shift: [0, 0]
+        pinky:
+          key:
+            column_net: P20
+          rows:
+            bottom:
+              shift: [0, 0]
+        ring:
+          key:
+            column_net: P19
+            splay: 0
+            stagger: 10
+        middle:
+          key:
+            column_net: P18
+            stagger: 3
+        index:
+          key:
+            column_net: P15
+            stagger: -5
+        inner:
+          key:
+            column_net: P14
+            stagger: -2
+      rows:
+        bottom:
+          row_net: P2
+        home:
+          row_net: P0
+        top:
+          row_net: P1
+    thumbs:
+      key:
+        padding: 1ky
+        spread: 0
+      anchor:
+        ref: matrix_middle_bottom
+        shift: [-2, -kx-5]
+      columns:
+        inner1:
+          key:
+            column_net: P18
+          rows:
+            lower:
+              shift: [0, 0]
+              splay: 0
+            upper.skip: true
+        inner2:
+          key:
+            column_net: P15
+          rows:
+            lower:
+              shift: [sin(1*angle*pi/180)*radius, radius-cos(1*angle*pi/180)*radius]
+              splay: -angle
+            upper.skip: true
+        middle:
+          key:
+            column_net: P14
+          rows:
+            lower:
+              shift: [sin(2*angle*pi/180)*radius, radius-cos(2*angle*pi/180)*radius]
+              splay: -angle
+            upper.skip: true
+        outer1:
+          key:
+            column_net: P8
+          rows:
+            lower:
+              shift: [sin(3*angle*pi/180)*radius, radius-cos(3*angle*pi/180)*radius]
+              splay: -angle
+        outer2:
+          key:
+            column_net: P9
+          rows:
+            lower:
+              shift: [sin(4*angle*pi/180)*radius, radius-cos(4*angle*pi/180)*radius]
+              splay: -angle
+      rows:
+        lower:
+          row_net: P6
+        upper:
+          row_net: P7
+
+outlines:
+  raw:
+    - what: rectangle
+      where: true
+      size: [px, py]
+  keys:
+    - what: rectangle
+      where: true
+      size: [kx-0.5,ky-0.5]
+  board:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_outer_bottom
+          shift: [-0.5px, -0.5py]
+        - ref: matrix_outer_top
+          shift: [-0.5px, 0.5py]
+        - ref: matrix_ring_top
+          shift: [-0.5px, 0.5py]
+        - ref: matrix_middle_top
+          shift: [-0.5px, 0.5py]
+        - ref: matrix_middle_top
+          shift: [0.5px, 0.5py]
+        - ref: matrix_inner_top
+          shift: [0.6px, 0.5py]
+        - ref: matrix_inner_top
+          shift: [0.6px, 0.15py]
+        - ref: matrix_inner_top
+          shift: [1.75px, 0.15py]
+        - ref: matrix_inner_bottom
+          shift: [1.75px, -0.5py]
+        - ref: thumbs_outer1_upper
+          shift: [0.5px, 0.5py]
+        - ref: thumbs_outer2_upper
+          shift: [0.5px, 0.5py]
+        - ref: thumbs_outer2_upper
+          shift: [0.5px, -0.5py]
+        - ref: thumbs_outer2_lower
+          shift: [0.5px, -0.5py]
+        - ref: thumbs_middle_lower
+          shift: [0.5px, -0.5py]
+        - ref: thumbs_inner1_lower
+          shift: [-0.5px, -0.5py]
+      fillet: 2
+  xlBoard:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_outer_bottom
+          shift: [-0.5px -1, -0.5py - 1]
+        - ref: matrix_outer_top
+          shift: [-0.5px -1, 0.5py + 1]
+        - ref: matrix_ring_top
+          shift: [-0.5px - 1, 0.5py + 1]
+        - ref: matrix_middle_top
+          shift: [-0.5px - 1, 0.5py + 1]
+        - ref: matrix_middle_top
+          shift: [0.5px + 1, 0.5py + 1]
+        - ref: matrix_inner_top
+          shift: [0.6px + 1, 0.5py + 1]
+        - ref: matrix_inner_top
+          shift: [0.6px + 1, 0.15py + 1]
+        - ref: matrix_inner_top
+          shift: [1.75px + 1, 0.15py + 1]
+        - ref: matrix_inner_bottom
+          shift: [1.75px + 1, -0.5py]
+        - ref: thumbs_outer1_upper
+          shift: [0.5px + 1, 0.5py + 1]
+        - ref: thumbs_outer2_upper
+          shift: [0.5px + 1, 0.5py + 1]
+        - ref: thumbs_outer2_upper
+          shift: [0.5px + 1, -0.5py - 1]
+        - ref: thumbs_outer2_lower
+          shift: [0.5px + 1, -0.5py - 1]
+        - ref: thumbs_middle_lower
+          shift: [0.5px + 1, -0.5py - 1]
+        - ref: thumbs_inner1_lower
+          shift: [-0.5px - 1, -0.5py - 1]
+      fillet: 2
+  smallBoard:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_outer_bottom
+          shift: [-0.5px + 3, -0.5py + 3]
+        - ref: matrix_outer_top
+          shift: [-0.5px +3, 0.5py - 3]
+        - ref: matrix_ring_top
+          shift: [-0.5px + 3, 0.5py - 3]
+        - ref: matrix_middle_top
+          shift: [-0.5px + 3, 0.5py - 3]
+        - ref: matrix_middle_top
+          shift: [0.5px - 3, 0.5py - 3]
+        - ref: matrix_inner_top
+          shift: [0.6px - 3, 0.5py - 3]
+        - ref: matrix_inner_top
+          shift: [0.6px - 3, 0.15py - 3]
+        - ref: matrix_inner_top
+          shift: [1.75px - 3, 0.15py - 3]
+        - ref: matrix_inner_bottom
+          shift: [1.75px - 3, -0.5py + 3]
+        - ref: thumbs_outer1_upper
+          shift: [0.5px - 3, 0.5py - 3]
+        - ref: thumbs_outer2_upper
+          shift: [0.5px - 3, 0.5py - 3]
+        - ref: thumbs_outer2_upper
+          shift: [0.5px - 3, -0.5py + 3]
+        - ref: thumbs_outer2_lower
+          shift: [0.5px - 3, -0.5py + 3]
+        - ref: thumbs_middle_lower
+          shift: [0.5px - 3, -0.5py + 3]
+        - ref: thumbs_inner1_lower
+          shift: [-0.5px + 3, -0.5py + 3]
+      fillet: 2
+  combo:
+    - name: board
+    - operation: subtract
+      name: keys
+  mounting:
+    - what: circle
+      radius: screwSize
+      where:
+        ref: matrix_pinky_top
+        shift: [0, 0.7ky]
+    - what: circle
+      radius: screwSize
+      where:
+        ref: matrix_pinky_bottom
+        shift: [0, 0.5ky]
+    - what: circle
+      radius: screwSize
+      where:
+        ref: matrix_middle_home
+        shift: [0, 0.5ky]
+    - what: circle
+      radius: screwSize
+      where:
+        ref: matrix_middle_bottom
+        shift: [0, -0.7ky]
+    - what: circle
+      radius: screwSize
+      where:
+        ref: thumbs_outer1_upper
+        shift: [0, 0.6ky]
+    - what: circle
+      radius: screwSize
+      where:
+        ref: matrix_inner_home
+        shift: [0, 0.5ky]
+  standoff:
+    - what: circle
+      radius: standoffSize
+      where:
+        ref: matrix_pinky_top
+        shift: [0, 0.7ky]
+    - what: circle
+      radius: standoffSize
+      where:
+        ref: matrix_pinky_bottom
+        shift: [0, 0.5ky]
+    - what: circle
+      radius: standoffSize
+      where:
+        ref: matrix_middle_home
+        shift: [0, 0.5ky]
+    - what: circle
+      radius: standoffSize
+      where:
+        ref: matrix_middle_bottom
+        shift: [0, -0.7ky]
+    - what: circle
+      radius: standoffSize
+      where:
+        ref: thumbs_outer1_upper
+        shift: [0, 0.6ky]
+    - what: circle
+      radius: standoffSize
+      where:
+        ref: matrix_inner_home
+        shift: [0, 0.5ky]
+pcbs:
+  keyboard:
+    outlines:
+      main:
+        outline: board
+    footprints:
+      choc_hotswap:
+        what: choc
+        where: true
+        params:
+          keycaps: true
+          reverse: true
+          hotswap: false
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -5]
+      promicro:
+        what: promicro_pretty
+        params:
+          orientation: "up"
+        where:
+          ref: matrix_inner_top
+          shift: [px,-0.7py]
+          rotate: -90
+      reset:
+        what: b3u1000p
+        params:
+          r1: RST
+          r2: GND
+        where:
+          ref: matrix_inner_top
+          shift: [1.55px, -0.2py]
+          rotate: 90
+      pcm12:
+        what: pcm12
+        where:
+          ref: matrix_inner_top
+          shift: [1.55px, -0.7py]
+          rotate: 90
+        params:
+          from: pos
+          to: RAW
+          reverse: true
+      bat:
+        what: bat
+        params:
+          neg: GND
+          pos: pos
+        where:
+          ref: matrix_inner_bottom
+          shift: [1.55px, 0.5py]
+          rotate: 90
+      holeTopLeft:
+        what: m2
+        where:
+          ref: matrix_pinky_top
+          shift: [0, 0.7ky]
+      holeBotLeft:
+        what: m2
+        where:
+          ref: matrix_pinky_bottom
+          shift: [0, 0.5ky]
+      holeTopMid:
+        what: m2
+        where:
+          ref: matrix_middle_home
+          shift: [0, 0.5ky]
+      holeBotMid:
+        what: m2
+        where:
+          ref: matrix_middle_bottom
+          shift: [0, -0.7ky]
+      holeBotRight:
+        what: m2
+        where:
+          ref: thumbs_outer1_upper
+          shift: [0, 0.6ky]
+      holeTopRight:
+        what: m2
+        where:
+          ref: matrix_inner_home
+          shift: [0, 0.5ky]
+
+cases:
+  higherBottom:
+    - name: board
+      extrude: 2
+  xlBottom:
+    - name: xlBoard
+      extrude: 0.7
+  _outerWall:
+    - name: xlBoard
+      extrude: 5.6
+  _innerWallHigh:
+    - name: board
+      extrude: 5.6
+  _innerWall:
+    - name: board
+      extrude: 4
+  _insideWall:
+    - name: smallBoard
+      extrude: 4
+  _holes:
+    - name: mounting
+      extrude: 4
+  _standoffs:
+    - name: standoff
+      extrude: 4
+  wall:
+    - what: case
+      name: _outerWall
+      operation: add
+    - what: case
+      name: _innerWallHigh
+      operation: subtract
+  innerWall:
+    - what: case
+      name: _innerWall
+      operation: add
+    - what: case
+      name: _insideWall
+      operation: subtract
+  case:
+    - what: case
+      name: higherBottom
+      operation: add
+    - what: case
+      name: _standoffs
+      operation: add
+    - what: case
+      name: _holes
+      operation: subtract
+    - what: case
+      name: xlBottom
+      operation: add
+    - what: case
+      name: wall
+      operation: add
+    - what: case
+      name: innerWall
+      operation: add
