@@ -71,11 +71,9 @@ The config is written in yaml, if you're using [ergogen.cache.works](https://erg
 
 Next I printed out my mockups on piece of paper, stick it to the cardboard and put switches in. This way I was able to actually feel how it's gonna be typing on this keyboard.   
 
-![](imgs/mockups.png)
-
+<img src="imgs/paper_kb.jpg" alt="drawing"/>
+<img src="imgs/mockups.jpg" alt="drawing"/>
 After iterating over 3 designs and choosing the best one (the standard one lol), I begin with creating actuall PCB desing. I used a few new footprints, which I found in Ben Vallack [repository](https://github.com/benvallack/ergogen). In some of them I had to change a few things, as his config was written in Ergogen v3. You can find all these footprints in [/ergogen/src/footprints/](/ergogen/src/footprints/) as well as the final [config](/ergogen/config.yaml). 
-
-### 
 
 
 - create your desing in Ergogen (FlatFootFox posts might be very helpfull)
