@@ -18,7 +18,7 @@ Welcome to the IsThisLoss repository. In this README you will find my knowledge 
 
 ## Project Overview
 
-![Keyboard Image](link_to_keyboard_image.jpg)
+![Keyboard Image](imgs/final_keyboard.jpg)
 
 This project is a documentation of my journey in creating a custom split keyboard. It encompasses every stage of the process, from the initial design concept to the final product. Whether you're a fellow keyboard enthusiast or just curious about the DIY keyboard-making world, this repository is meant to inspire, educate, and entertain.
 
