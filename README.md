@@ -35,6 +35,7 @@ Here is a video about KiCad, rather long tho (1:40) and its probably not necessa
 
 ### Articles
 - [FlatFootFox](https://flatfootfox.com/) - you can find there 6 articles about designing your custom keyboard with Ergogen v4. It starts from [introduction](https://flatfootfox.com/ergogen-introduction/). 
+- [Kyria rev3](https://docs.splitkb.com/hc/en-us/sections/6269738440220-Aurora-Kyria-rev3-Build-Guide) - build guide, I was able to better understand building process by reading this article
 - [How key matrices works](https://pcbheaven.com/wikipages/How_Key_Matrices_Works/)
 
 ### Ergopad
@@ -69,42 +70,54 @@ The config is written in yaml, if you're using [ergogen.cache.works](https://erg
 
 ![](imgs/ergogen.png)
 
+After I though I have a good desing I generated `kicad_pcb` file (by clicking Generate on website or running `ergogen input.yaml -o output_folder` in CLI - you have pcb block in your config - [read more](https://docs.ergogen.xyz/pcbs)) and opened it in KiCad. 
+
+![](imgs/kicad_kb.jpg)
+
 Next I printed out my mockups on piece of paper, stick it to the cardboard and put switches in. This way I was able to actually feel how it's gonna be typing on this keyboard.   
 
 <img src="imgs/paper_kb.jpg" alt="drawing"/>
 <img src="imgs/mockups.jpg" alt="drawing"/>
-After iterating over 3 designs and choosing the best one (the standard one lol), I begin with creating actuall PCB desing. I used a few new footprints, which I found in Ben Vallack [repository](https://github.com/benvallack/ergogen). In some of them I had to change a few things, as his config was written in Ergogen v3. You can find all these footprints in [/ergogen/src/footprints/](/ergogen/src/footprints/) as well as the final [config](/ergogen/config.yaml). 
+
+After iterating over 3 designs and choosing the best one (the standard one lol), I begin with creating actuall PCB desing. I had to switch to [CLI Ergogen](https://github.com/ergogen/ergogen) tool. I used a few new footprints, which I found in Ben Vallack [repository](https://github.com/benvallack/ergogen). In some of them I had to change a few things, as his config was written in Ergogen v3. You can find all these footprints in [/ergogen/src/footprints/](/ergogen/src/footprints/) as well as the final config [/ergogen/config.yaml](/ergogen/config.yaml). 
+
+The final PCB looks like this:
+
+![](imgs/kicad_pcb.png)
+
+I would really suggest to make sure that all wires are connect properly, go thorogh each connection, try to understand why it is there and so on. For me the boards costed €32.52 what in combination with the shipping time (above one week) made me really want to make sure that everything is correct. 
+You can find my final PCB desing [here](/final_pcb/pcbs/keyboard.kicad_pcb) alongside with all files that Erogogen generated.
+
+When I was waiting for PCBs to arrive I bought all other necessary parts like buttons, diodes etc. You can find all parts I used in [Parts](#parts).
+I also printed the case (I changed the design a little bit using Blender - one wall was to thin and I didn't want to spend more time trying to move it in Ergogen). 
+
+![case pic](imgs/case1.jpg)
+![case pic](imgs/case2.jpg)
+
+The PCBs looks really good! I was really happy with the result.
+
+![pcb pic](imgs/pcb1.jpg)
+![pcb pic](imgs/pcb2.jpg)
+
+One thing to mention, I messed up the possition of the Amongus :/ because battery wire is right above him.
+
+When I got all the elements, I was able to finally put it toghether. I started with soldering diodes, then I put switches in and soldered them. After that I soldered microcontroller and all other elements.
 
 
-- create your desing in Ergogen (FlatFootFox posts might be very helpfull)
-- if you want to have custom footprints in your PCB, you will have to install Ergogen localy and add these footprints into `src/footprints/` (you can find footprints used by me in this repo)
-- I encourage you to print your layout on piece of paper, stick it to the cardboard and put switches in, to try out your keyboard 
-- after you are happy with your desing you can connect all components in KiCad (or other similar tool)
-- order PCB at jlcpcb or pcbway (I think these are two main manufacturers)
-- solder everything together
-- play with software
-
-One of my colegue motivated me to learn touch typing (after I saw him writing on his split keyboard). During that time I found it pretty inconvinient to typing letters like "p" with my pinky and I started thinking about buying split keyboard for myself. 
-Many of them are actually sold in IKEA style, you order parts and then you have to solder all together. So I thought to myself, why would I buy premade PCB, when I can desing it on my own. And that's how it started.
-
-
-
-I started by working with Ergopad and then I tried to map this desing in Ergogen. 
-I managed to desing keyboard that should suits my fingers, printed it out on paper and give it a try. To be fair on a flat paper I could really say a lot so I decided to buy switches, keycaps and microcontrolles first.
-When I was waiting for them to arrive I stared playing with KiCad. 
-I didn't like having two microcontrolles in different way, so I had to use custom footprint (you can find )
-
-
-
-
-After they arrived I created my first mockup using cardboard so switches would stay in place.
-
-![mockup pic]()
-
-The first desing didn't feel good - pinky part was to tilted. I do two more tries and went with the most standard one (on the bottom).
-![3 mockups pic]()
-
-
+## Parts
+- 5x PCB (you cannot order less, but you will use two of them)
+- 2x [Nice!Nano](https://nicekeyboards.com/nice-nano/)
+- 50x Kalih Low Profile Choc Switches (although I think that linear switches might be better - didn't tested tho)
+- 48x Blank MBK Choc Low Profile Keycaps
+- 2x Blank MBK Choc Low Profile Keycaps with homing bumps
+- 50x SMD diodes (1N4148W)
+- 2x 3.7V 110mAh LiPo battery (L401230)
+- 2x ZHR-2 JST female connector (you can also solder battery directly to the board)
+- 2x S2B-ZR(LF)(SN) JST male connector (also optional)
+- 2x slide switches (PCM12SMTR)
+- 2x buttons (B3U-1000PM)
+- 12x M2x4mm screws 
+- 12x threaded inserts M2x3x3.5mm for the case
 
 
 ## Tips & Tricks
