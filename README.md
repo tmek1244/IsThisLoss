@@ -79,6 +79,8 @@ Next I printed out my mockups on piece of paper, stick it to the cardboard and p
 <img src="imgs/paper_kb.jpg" alt="drawing"/>
 <img src="imgs/mockups.jpg" alt="drawing"/>
 
+### Finish PCB design
+
 After iterating over 3 designs and choosing the best one (the standard one lol), I begin with creating actuall PCB desing. I had to switch to [CLI Ergogen](https://github.com/ergogen/ergogen) tool. I used a few new footprints, which I found in Ben Vallack [repository](https://github.com/benvallack/ergogen). In some of them I had to change a few things, as his config was written in Ergogen v3. You can find all these footprints in [/ergogen/src/footprints/](/ergogen/src/footprints/) as well as the final config [/ergogen/config.yaml](/ergogen/config.yaml). 
 
 The final PCB looks like this:
@@ -88,11 +90,15 @@ The final PCB looks like this:
 I would really suggest to make sure that all wires are connect properly, go thorogh each connection, try to understand why it is there and so on. For me the boards costed €32.52 what in combination with the shipping time (above one week) made me really want to make sure that everything is correct. 
 You can find my final PCB desing [here](/final_pcb/pcbs/keyboard.kicad_pcb) alongside with all files that Erogogen generated.
 
+### Printing the case
+
 When I was waiting for PCBs to arrive I bought all other necessary parts like buttons, diodes etc. You can find all parts I used in [Parts](#parts).
 I also printed the case (I changed the design a little bit using Blender - one wall was to thin and I didn't want to spend more time trying to move it in Ergogen). 
 
 ![case pic](imgs/case1.jpg)
 ![case pic](imgs/case2.jpg)
+
+### Assembly
 
 The PCBs looks really good! I was really happy with the result.
 
@@ -101,12 +107,26 @@ The PCBs looks really good! I was really happy with the result.
 
 One thing to mention, I messed up the possition of the Amongus :/ because battery wire is right above him.
 
-When I got all the elements, I was able to finally put it toghether. I started with soldering diodes, then I put switches in and soldered them. After that I soldered microcontroller and all other elements.
+When I got all the elements, I was able to finally put it toghether. 
+- I started with soldering diodes (and checking every connection with multimeter).
+- Then I put 3 screws per part, because I wouldn't be able to put them when switches would be soldered.
+- Next I put switches in and soldered them. 
+- After that I soldered microcontroller and all other elements. Nice!Nano comes without soldered pins and I didn't buy the recommended one the Mill Max as they are pretty pricey. I saw that many people use THT diodes (or other resistors) legs, but they seemed too soft for me. I found this [repo](https://github.com/joric/nrfmicro/wiki/Sockets/acb60b52e944bf0ea39e4a0f4e1fb88a0c9fdea8) where I get what I wanted. The solution was to use the male to male connectors often found in RGB led strips. Just get a good pliers.
+- Last but not least I change battery connectors to JST.
+
+After assembling the keyboards it was time to get familiar with ZMK.
+
+
+### ZMK
+
+You can check out my [current config](https://github.com/tmek1244/zmk-config).
 
 
 ## Parts
 - 5x PCB (you cannot order less, but you will use two of them)
 - 2x [Nice!Nano](https://nicekeyboards.com/nice-nano/)
+- 12x2x2x machine sockets
+- 12x2x2x machine pins
 - 50x Kalih Low Profile Choc Switches (although I think that linear switches might be better - didn't tested tho)
 - 48x Blank MBK Choc Low Profile Keycaps
 - 2x Blank MBK Choc Low Profile Keycaps with homing bumps
@@ -120,23 +140,10 @@ When I got all the elements, I was able to finally put it toghether. I started w
 - 12x threaded inserts M2x3x3.5mm for the case
 
 
-## Tips & Tricks
+
+## Tips & Tricks - Summary
 - if you want to avoid mounting diodes you have to reduce the number of keys to number of pins available on your microcontroler (for Nice!Nano is it 17). It has to know which key was pressed and you couldn't tell it if there was a multiple keys connected to one pin right.
-And that's where key matrices are used (you can read more ![here](https://pcbheaven.com/wikipages/How_Key_Matrices_Works/)). It turned out being pretty easy to understand and use. Routing was a little be trickier but that's about that.
+And that's where key matrices are used (you can read more [here](https://pcbheaven.com/wikipages/How_Key_Matrices_Works/)). It turned out being pretty easy to understand and use. Routing was a little be trickier but that's about that.
 Also you may think that soldering such small parts as SMD diodes would be hard, but that's also not the case! Although you have to have a good pair of tweezers. 
-- 
-
-
-The `challenges-solutions` directory is where I discuss the hurdles I encountered during this project and the innovative solutions I devised to overcome them. If you're embarking on your own DIY keyboard journey, this section might provide valuable insights into problem-solving.
-
-## Documentation
-
-The `documentation` directory is the heart of this repository. Here, I've documented my entire journey, from ideation and prototyping to assembly and testing. You'll find detailed write-ups, explanations, and reflections on various aspects of the project. Whether you're here to learn or share experiences, this section is a treasure trove of information.
-
-## Inspirational Pics
-
-![Inspiration Image](link_to_inspiration_image.jpg)
-
-For those who appreciate the visual aspect, the `inspirational-pics` directory is a collection of images showcasing the keyboard's evolution. These images capture the beauty of the journey, from the very first sketches to the final, fully functional split keyboard.
-
-
+- use pins from led connectors
+- make sure your pcb design is valid before ordering it
