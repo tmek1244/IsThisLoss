@@ -119,14 +119,23 @@ After assembling the keyboards it was time to get familiar with ZMK.
 
 ### ZMK
 
-You can check out my [current config](https://github.com/tmek1244/zmk-config).
+You can check out my [current config](https://github.com/tmek1244/zmk-config). There are lots of options there, so I highly recommend to go checkout the [documentation](https://zmk.dev/). ZMK allows creating layers, which are basically different keymaps. You can switch between them using key combination. 
+The most important behaviors are:
+- `&kp A`- the "key press" behaviour sends standard keycodes on press/release
+- `&mt LSHIFT A` - the "mod-tap" behaviour sends modifier keycode if pressed longer than 200ms, otherwise sends tap keycode
+- `&mo LOWER` - the "momentary layer" behavior enables a layer while a certain key is pressed
+- `&sl LOWER` - the "sticky layer" behavior enables a layer until a certain key is pressed again. I use sticky layer for activating layer with f keys.
+
+The mod-tap behaviour is simpler version of [hold-tap](https://zmk.dev/docs/behaviors/hold-tap) which might be useful in home modifiers.
+
+You can build firmware locally, although I spend quite some time trying to do that and I wasn't able to. I end up using [Github Actions](https://zmk.dev/docs/user-setup). You simply upload firmware to nice!nano by connecting it to your computer and double pressing reset button. Then you can just drag and drop file to the device.
 
 
 ## Parts
 - 5x PCB (you cannot order less, but you will use two of them)
 - 2x [Nice!Nano](https://nicekeyboards.com/nice-nano/)
-- 12x2x2x machine sockets
-- 12x2x2x machine pins
+- 48x machine sockets
+- 48x machine pins
 - 50x Kalih Low Profile Choc Switches (although I think that linear switches might be better - didn't tested tho)
 - 48x Blank MBK Choc Low Profile Keycaps
 - 2x Blank MBK Choc Low Profile Keycaps with homing bumps
@@ -145,5 +154,4 @@ You can check out my [current config](https://github.com/tmek1244/zmk-config).
 - if you want to avoid mounting diodes you have to reduce the number of keys to number of pins available on your microcontroler (for Nice!Nano is it 17). It has to know which key was pressed and you couldn't tell it if there was a multiple keys connected to one pin right.
 And that's where key matrices are used (you can read more [here](https://pcbheaven.com/wikipages/How_Key_Matrices_Works/)). It turned out being pretty easy to understand and use. Routing was a little be trickier but that's about that.
 Also you may think that soldering such small parts as SMD diodes would be hard, but that's also not the case! Although you have to have a good pair of tweezers. 
-- use pins from led connectors
-- make sure your pcb design is valid before ordering it
+- use pins from rgb led connectors
